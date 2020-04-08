@@ -1,9 +1,8 @@
 import imaplib
 import quopri
-import credentials
 
-FROM_EMAIL = credentials.email
-FROM_PWD = credentials.password
+FROM_EMAIL = "isabella.hallite@globant.com"
+FROM_PWD = "ymkwtkxzfprcnjnf"
 SMTP_SERVER = "imap.gmail.com"  # padrão
 SMTP_PORT = 993  # padrão
 
