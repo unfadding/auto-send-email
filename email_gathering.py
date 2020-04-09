@@ -6,5 +6,4 @@ imported_email_string = decoded_string
 email_message = str(imported_email_string)
 regex = r'([\w0-9._-]+@[\w0-9._-]+\.[\w0-9_-]+)'
 emails = re.findall(regex, email_message)
-print(emails)
-#29
+email_list = emails[29:-1:1]
