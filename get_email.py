@@ -1,8 +1,9 @@
 import imaplib
 import quopri
+import keyring
 
 FROM_EMAIL = "isabella.hallite@globant.com"
-FROM_PWD = "ymkwtkxzfprcnjnf"
+FROM_PWD = keyring.get_password("system", "isabella.hallite")
 SMTP_SERVER = "imap.gmail.com"  # padrão
 SMTP_PORT = 993  # padrão
 
