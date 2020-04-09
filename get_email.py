@@ -1,8 +1,9 @@
 import imaplib
 import quopri
+import keyring
 
 FROM_EMAIL = "isabella.hallite@globant.com"
-FROM_PWD = "dzdtjaftnhvdnpwk"
+FROM_PWD = keyring.get_password("system", "isabella.hallite")
 SMTP_SERVER = "imap.gmail.com"  # padrão
 SMTP_PORT = 993  # padrão
 
@@ -23,6 +24,6 @@ for num in data[0].split():
     typ, data = mail.fetch(num, '(RFC822)')
     raw_email = data[0][1]
 
-raw_email_string = raw_email.decode('utf-8')
+raw_email_string = raw_email.decode("utf-8")
 
 decoded_string = quopri.decodestring(raw_email_string)
