@@ -11,7 +11,7 @@ SMTP_PORT = 993  # padrão
 mail = imaplib.IMAP4_SSL(SMTP_SERVER)
 mail.login(FROM_EMAIL, FROM_PWD)
 
-# Neste ponto selecionamos a caixa de e-mail que queremos fazer a leitura, no meu caso, utilizei “inbox” para leitura dos e-mails. Como também vamos atribuir um label aos e-mails “processados”, passamos o parâmetro readonly=False
+# Neste ponto selecionamos a caixa de e-mail que queremos fazer a leitura. Como também vamos atribuir um label aos e-mails “processados”, passamos o parâmetro readonly=False
 mail.select('inbox', readonly=False)
 
 type_mail, data = mail.search(None, 'SUBJECT Birthdays!')
