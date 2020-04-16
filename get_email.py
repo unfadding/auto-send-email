@@ -1,29 +1,32 @@
 import imaplib
 import quopri
-import keyring
+from conf.credentials import email, password, server
 
-FROM_EMAIL = "isabella.hallite@globant.com"
-FROM_PWD = keyring.get_password("system", "isabella.hallite")
-SMTP_SERVER = "imap.gmail.com"  # padrão
-SMTP_PORT = 993  # padrão
 
-# Abrimos a conexão com o servidor e efetuamos o login.
-mail = imaplib.IMAP4_SSL(SMTP_SERVER)
-mail.login(FROM_EMAIL, FROM_PWD)
+def get_last_email():
+    mail = imaplib.IMAP4_SSL(server)
+    mail.login(email, password)
+    mail.select('inbox')
+    type_mail, email_id = mail.search(None, 'SUBJECT Birthdays!')
+    return type_mail, email_id, mail
 
-# Neste ponto selecionamos a caixa de e-mail que queremos fazer a leitura. Como também vamos atribuir um label aos e-mails “processados”, passamos o parâmetro readonly=False
-mail.select('inbox', readonly=False)
 
-type_mail, data = mail.search(None, 'SUBJECT Birthdays!')
+type_mail, email_id, mail = get_last_email()
 
-mail_id = data[0]
 
-id_list = mail_id.split()
+def get_email_content():
+    typ, email_data = mail.fetch(email_id[0], '(RFC822)')
+    raw_email = email_data[0][1]
+    return raw_email
 
-for num in data[0].split():
-    typ, data = mail.fetch(num, '(RFC822)')
-    raw_email = data[0][1]
 
-raw_email_string = raw_email.decode("utf-8")
+raw_email = get_email_content()
 
-decoded_string = quopri.decodestring(raw_email_string)
+
+def decode_email():
+    raw_email_string = raw_email.decode("utf-8")
+    decoded_email = quopri.decodestring(raw_email_string)
+    return decoded_email
+
+
+decoded_email = decode_email()
