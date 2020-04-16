@@ -1,5 +1,5 @@
 import yagmail
-from email_gathering import email_list
+from email_parser import email_list
 import keyring
 
 listed_emails = ['']
