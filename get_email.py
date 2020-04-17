@@ -5,10 +5,12 @@ from todays_email import todays_email
 
 
 def get_todays_email():
+    print('GETTING E-MAIL FROM SERVER...')
     mail = imaplib.IMAP4_SSL(server)
     mail.login(email, password)
     mail.select('inbox')
     type_mail, email_id = mail.search(None, todays_email)
+    print('OK. GOT {}'.format(todays_email))
     return type_mail, email_id, mail
 
 
@@ -21,6 +23,7 @@ def get_email_content():
 def decode_email():
     raw_email_string = raw_email.decode("utf-8")
     decoded_email = quopri.decodestring(raw_email_string)
+    print('E-MAIL SUCCESSFULY IMPORTED')
     return decoded_email
 
 

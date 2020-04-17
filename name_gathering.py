@@ -1,5 +1,4 @@
 from get_email import decoded_email
-import email
 import re
 
 imported_email_string = decoded_email

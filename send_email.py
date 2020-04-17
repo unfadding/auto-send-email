@@ -1,13 +1,13 @@
 import yagmail
+from conf.credentials import email, password
 from email_parser import email_list
-import keyring
+from body_content import body_content
 
-listed_emails = ['']
+listed_emails = ['isabellahallite@gmail.com']
 
+print("SENDING E-MAILS...")
 for i in range(len(listed_emails)):
-    yagmail.SMTP('isabella.hallite@globant.com',
-                 keyring.get_password("system", "isabella.hallite")).send(
-                     to=listed_emails[i],
-                     subject='Happy Birthday!',
-                     contents=yagmail.inline('birthday card.png'))
-    print("Email sent successfully to", listed_emails[i])
+    yagmail.SMTP(email, password).send(to=listed_emails[i],
+                                       subject='Happy Birthday!',
+                                       contents=(body_content))
+    print("EMAIL SENT SUCCESSFULY TO:", listed_emails[i])

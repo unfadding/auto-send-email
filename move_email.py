@@ -16,9 +16,10 @@ def delete_todays_email_from_oldfolder():
 def check_todays_email_was_moved():
     mail.select('Birthdays')
     response_ok, moved_email_id = mail.search(None, todays_email)
-    print('COPIED:', moved_email_id)
+    print('MOVED:', moved_email_id)
 
 
 def close_connection():
     mail.close()
     mail.logout()
+    print('CONNECTION CLOSED')
