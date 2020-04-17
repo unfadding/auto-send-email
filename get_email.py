@@ -1,17 +1,15 @@
 import imaplib
 import quopri
 from conf.credentials import email, password, server
+from todays_email import todays_email
 
 
-def get_last_email():
+def get_todays_email():
     mail = imaplib.IMAP4_SSL(server)
     mail.login(email, password)
     mail.select('inbox')
-    type_mail, email_id = mail.search(None, 'SUBJECT Birthdays!')
+    type_mail, email_id = mail.search(None, todays_email)
     return type_mail, email_id, mail
-
-
-type_mail, email_id, mail = get_last_email()
 
 
 def get_email_content():
@@ -20,13 +18,12 @@ def get_email_content():
     return raw_email
 
 
-raw_email = get_email_content()
-
-
 def decode_email():
     raw_email_string = raw_email.decode("utf-8")
     decoded_email = quopri.decodestring(raw_email_string)
     return decoded_email
 
 
+type_mail, email_id, mail = get_todays_email()
+raw_email = get_email_content()
 decoded_email = decode_email()
