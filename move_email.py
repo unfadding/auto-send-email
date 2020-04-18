@@ -23,3 +23,9 @@ def close_connection():
     mail.close()
     mail.logout()
     print('CONNECTION CLOSED')
+
+
+copy_todays_email_to_newfolder()
+delete_todays_email_from_oldfolder()
+check_todays_email_was_moved()
+close_connection()
