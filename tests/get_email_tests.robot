@@ -1,7 +1,7 @@
 *** Settings ***
 Documentation          Check if the e-mail is arriving accordingly
-Variables               get_email.py
-Variables               email_parser.py
+Variables               ../get_email.py
+Variables               ../email_parser.py
 
 *** Keywords ***
 You have a connected mailbox
